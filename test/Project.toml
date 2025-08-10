@@ -1,2 +1,7 @@
+name = "test"
+uuid = "442937d8-0d48-44e8-8970-41c3a7de2b32"
+authors = ["Octochen <YuchenZhang9504@163.com>"]
+version = "0.1.0"
+
 [deps]
 UniMaaS = "ef40eabe-a19e-472a-9088-b347bd34dc91"
