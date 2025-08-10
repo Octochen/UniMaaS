@@ -9,7 +9,7 @@ include("DJSSPs_Examples.jl")
 
 jobs, machines, processing_times, machine_assignments = djssp_2J_2M()
 
-makespan, start_times, model = DJSP.solve_deterministic_jsp(jobs, machines, processing_times, machine_assignments)
+makespan, start_times, model_result = DJSP.solve_deterministic_jsp(jobs, machines, processing_times, machine_assignments)
 
 GantChart.jsp_ganttchart(jobs, machines, processing_times, machine_assignments, start_times)
 

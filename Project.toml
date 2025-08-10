@@ -1,22 +1,14 @@
 name = "UniMaaS"
-uuid = "a04d71b5-a55a-4444-a492-4644f8519024"
+uuid = "ef40eabe-a19e-472a-9088-b347bd34dc91"
 authors = ["Octochen <YuchenZhang9504@163.com>"]
 version = "0.1.0"
 
 [deps]
 Cbc = "9961bab8-2fa3-5c5a-9d89-47fab24efd76"
+CoordinateTransformations = "150eb455-5306-5404-9cee-2592286d6298"
 JuMP = "4076af6c-e467-56ae-b986-b466b2749572"
 MathOptInterface = "b8f27783-ece8-5eb3-8dc8-9495eed66fee"
 MeshCat = "283c5d60-a78f-5afe-a0af-af636b173e11"
 MeshCatMechanisms = "6ad125db-dd91-5488-b820-c1df6aab299d"
 Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 RigidBodyDynamics = "366cf18f-59d5-5db9-a4de-86a9f6786172"
-
-[compat]
-Cbc = "1.2.0"
-JuMP = "1.28.0"
-MathOptInterface = "1.42.1"
-MeshCat = "1.1.0"
-MeshCatMechanisms = "0.10.0"
-Plots = "1.40.18"
-RigidBodyDynamics = "2.5.0"
