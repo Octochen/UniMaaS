@@ -101,8 +101,8 @@ function solve_deterministic_jsp(jobs, machines, processing_times, machine_assig
     
     # Collect results
     # Dict(key_expr => value_expr for element in collection): quickly create a dictionary.
-    start_times = Dict(op => value(t[op]) for op in operations)
-    makespan = value(Cmax)
+    start_times = Dict(op => JuMp.value(t[op]) for op in operations)
+    makespan = JuMp.value(Cmax)
     
     return makespan, start_times, model
 end
