@@ -91,7 +91,7 @@ function solve_deterministic_jsp(jobs, machines, processing_times, machine_assig
     end
     
     # Solve the model
-    optimize!(model)
+    JuMP.optimize!(model)
     
     # Check solution status
     if termination_status(model) != MOI.OPTIMAL

@@ -26,7 +26,7 @@ function jsp_ganttchart(jobs, machines, processing_times, machine_assignments, s
     job_colors = Dict(j => get_color_for_job(j) for j in jobs)
     
     # Create plot
-    plt = plot(size=size, title=title, xlabel="Time", ylabel="Machine", 
+    plt = Plots.plot(size=size, title=title, xlabel="Time", ylabel="Machine", 
                legend=:topleft, grid=true, titlefontsize=12)
     
     # Track which jobs we've already added to legend
@@ -70,7 +70,7 @@ function jsp_ganttchart(jobs, machines, processing_times, machine_assignments, s
     end
     
     # Customize y-axis to show machine names
-    yticks!(plt, 
+    Plots.yticks!(plt, 
         (1:length(sorted_machines), 
         ["Machine $m" for m in sorted_machines]))
     
