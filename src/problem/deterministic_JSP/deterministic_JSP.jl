@@ -2,6 +2,7 @@ export deterministic_JSP
 
 module deterministic_JSP
 import JuMP, Cbc
+import MathOptInterface as MOI
 
 
 function solve_deterministic_jsp(jobs, machines, processing_times, machine_assignments; H=1_000_000)
