@@ -27,7 +27,7 @@ function solve_deterministic_jsp(jobs, machines, processing_times, machine_assig
     operations = collect(keys(processing_times))
     
     # Create model
-    model = Model(Cbc.Optimizer)
+    model = JuMP.Model(Cbc.Optimizer)
     
     # Variables
     JuMP.@variable(model, Cmax >= 0)  # Makespan
