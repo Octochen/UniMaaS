@@ -14,12 +14,8 @@ function djssp_2J_2M()
         (1, 1) => 1, (1, 2) => 2,  # Job 1 operations
         (2, 1) => 2, (2, 2) => 1   # Job 2 operations
     )
-    
-    makespan, start_times, model = solve_deterministic_jssp(jobs, machines, processing_times, machine_assignments)
-    
-    plt = Plot_JSSPs_Gantt(jobs, machines, processing_times, machine_assignments, start_times)
 
-    return jobs, machines, processing_times, machine_assignments, start_times, makespan, model
+    return jobs, machines, processing_times, machine_assignments
 end
 
 function djssp_10J_10M()
@@ -44,8 +40,6 @@ function djssp_10J_10M()
             machine_assignments[(i, j)]=1+round((m-1)*rand())
         end
     end
-    
-    makespan, start_times, model = solve_deterministic_jssp(jobs, machines, processing_times, machine_assignments)
 
-    return jobs, machines, processing_times, machine_assignments, start_times, makespan, model
+    return jobs, machines, processing_times, machine_assignments
 end

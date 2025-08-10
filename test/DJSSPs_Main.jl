@@ -1,24 +1,15 @@
+using Pkg
 Pkg.add(url="https://github.com/Octochen/UniMaaS")
 using UniMaaS
 
+const DJSP = UniMaaS.problem.deterministic_JSP
+const GantChart = UniMaaS.util.plot_jsp_ganttchart
 ####################################################################################################
+include("DJSSPs_Examples.jl")
 
-jobs = [1, 2]
-machines = [1, 2]
+jobs, machines, processing_times, machine_assignments = djssp_2J_2M()
 
-# Processing times: (job, operation) => time
-processing_times = Dict(
-    (1, 1) => 3, (1, 2) => 2,  # Job 1 operations
-    (2, 1) => 2, (2, 2) => 1   # Job 2 operations
-)
+makespan, start_times, model = DJSP.solve_deterministic_jsp(jobs, machines, processing_times, machine_assignments)
 
-# Machine assignments: (job, operation) => machine
-machine_assignments = Dict(
-    (1, 1) => 1, (1, 2) => 2,  # Job 1 operations
-    (2, 1) => 2, (2, 2) => 1   # Job 2 operations
-)
-
-makespan, start_times, model = solve_deterministic_jsp(jobs, machines, processing_times, machine_assignments)
-
-plot_jsp_ganttchart(jobs, machines, processing_times, machine_assignments, start_times)
+GantChart.jsp_ganttchart(jobs, machines, processing_times, machine_assignments, start_times)
 
