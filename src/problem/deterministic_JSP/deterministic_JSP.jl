@@ -30,8 +30,8 @@ function solve_deterministic_jsp(jobs, machines, processing_times, machine_assig
     model = Model(Cbc.Optimizer)
     
     # Variables
-    @variable(model, Cmax >= 0)  # Makespan
-    @variable(model, t[operations] >= 0)  # Start time for each operation
+    JuMP.@variable(model, Cmax >= 0)  # Makespan
+    JuMP.@variable(model, t[operations] >= 0)  # Start time for each operation
 
     # Precedence variables: β[(i,μ1),(i′,μ2)] = 1 if (i,μ1) is before (i′,μ2) on same machine
     # Initialize for all pairs that share the same machine
@@ -52,7 +52,7 @@ function solve_deterministic_jsp(jobs, machines, processing_times, machine_assig
     end
     
     # Objective: Minimize makespan
-    @objective(model, Min, Cmax)
+    JuMP.@objective(model, Min, Cmax)
     
     # Constraint: Makespan is at least the completion time of the last operation of each job
     for job in jobs
@@ -61,7 +61,7 @@ function solve_deterministic_jsp(jobs, machines, processing_times, machine_assig
         job_ops = filter(op -> op[1] == job, operations)
         # Find the last operation (assuming operations are ordered 1,2,3,...)
         last_op = argmax(op -> op[2], job_ops)
-        @constraint(model, Cmax >= t[last_op] + processing_times[last_op])
+        JuMP.@constraint(model, Cmax >= t[last_op] + processing_times[last_op])
     end
     
     # Precedence constraints within each job
@@ -75,7 +75,7 @@ function solve_deterministic_jsp(jobs, machines, processing_times, machine_assig
         for i in 1:length(sorted_ops)-1
             op1 = sorted_ops[i]
             op2 = sorted_ops[i+1]
-            @constraint(model, t[op2] >= t[op1] + processing_times[op1])
+            JuMP.@constraint(model, t[op2] >= t[op1] + processing_times[op1])
         end
     end
     
@@ -84,10 +84,10 @@ function solve_deterministic_jsp(jobs, machines, processing_times, machine_assig
         m = machine_assignments[op1]  # Machine shared by op1 and op2
         
         # op1 before op2: t[op2] >= t[op1] + p[op1] - (1 - β) * H
-        @constraint(model, t[op2] >= t[op1] + processing_times[op1] - (1 - β) * H)
+        JuMP.@constraint(model, t[op2] >= t[op1] + processing_times[op1] - (1 - β) * H)
         
         # op2 before op1: t[op1] >= t[op2] + p[op2] - β * H
-        @constraint(model, t[op1] >= t[op2] + processing_times[op2] - β * H)
+        JuMP.@constraint(model, t[op1] >= t[op2] + processing_times[op2] - β * H)
     end
     
     # Solve the model
