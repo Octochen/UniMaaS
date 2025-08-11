@@ -24,7 +24,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/base_link.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/base_link.STL" />
       </geometry>
       <material name="">
         <color rgba="0.79216 0.81961 0.93333 1" />
@@ -33,7 +33,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/base_link_motor.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/base_link_motor.STL" />
       </geometry>
       <material name="">
         <color rgba="0.79216 0.81961 0.93333 1" />
@@ -42,13 +42,13 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/base_link.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/base_link.STL" />
       </geometry>
     </collision>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/base_link_motor.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/base_link_motor.STL" />
       </geometry>
     </collision>
   </link>
@@ -72,7 +72,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_1.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_1.STL" />
       </geometry>
       <material name="">
         <color rgba="0.79216 0.81961 0.93333 1" />
@@ -81,7 +81,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_1_motor.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_1_motor.STL" />
       </geometry>
       <material name="">
         <color rgba="0.79216 0.81961 0.93333 1" />
@@ -90,13 +90,13 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_1.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_1.STL" />
       </geometry>
     </collision>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_1_motor.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_1_motor.STL" />
       </geometry>
     </collision>
   </link>
@@ -128,7 +128,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_2.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_2.STL" />
       </geometry>
       <material name="">
         <color rgba="0.79216 0.81961 0.93333 1" />
@@ -137,7 +137,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_2_motor.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_2_motor.STL" />
       </geometry>
       <material name="">
         <color rgba="0.79216 0.81961 0.93333 1" />
@@ -146,13 +146,13 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_2.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_2.STL" />
       </geometry>
     </collision>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_2_motor.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_2_motor.STL" />
       </geometry>
     </collision>
   </link>
@@ -184,7 +184,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_3.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_3.STL" />
       </geometry>
       <material name="">
         <color rgba="0.79216 0.81961 0.93333 1" />
@@ -193,7 +193,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_3_motor.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_3_motor.STL" />
       </geometry>
       <material name="">
         <color rgba="0.79216 0.81961 0.93333 1" />
@@ -202,13 +202,13 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_3.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_3.STL" />
       </geometry>
     </collision>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_3_motor.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_3_motor.STL" />
       </geometry>
     </collision>
   </link>
@@ -240,7 +240,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_4.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_4.STL" />
       </geometry>
       <material name="">
         <color rgba="0.79216 0.81961 0.93333 1" />
@@ -249,7 +249,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_4_motor.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_4_motor.STL" />
       </geometry>
       <material name="">
         <color rgba="0.79216 0.81961 0.93333 1" />
@@ -258,13 +258,13 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_4.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_4.STL" />
       </geometry>
     </collision>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_4_motor.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_4_motor.STL" />
       </geometry>
     </collision>
   </link>
@@ -296,7 +296,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_5.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_5.STL" />
       </geometry>
       <material name="">
         <color rgba="0.79216 0.81961 0.93333 1" />
@@ -305,7 +305,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_5_motor.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_5_motor.STL" />
       </geometry>
       <material name="">
         <color rgba="0.79216 0.81961 0.93333 1" />
@@ -314,13 +314,13 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_5.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_5.STL" />
       </geometry>
     </collision>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_5_motor.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_5_motor.STL" />
       </geometry>
     </collision>
   </link>
@@ -352,7 +352,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_6.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_6.STL" />
       </geometry>
       <material name="">
         <color rgba="0.79216 0.81961 0.93333 1" />
@@ -361,7 +361,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://follower/meshes/link_6.STL" />
+        <mesh filename="package://src/modelling/urdf/follower/meshes/link_6.STL" />
       </geometry>
     </collision>
   </link>
