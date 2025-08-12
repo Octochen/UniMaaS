@@ -1155,7 +1155,7 @@ version = "1.0.2"
 
 [[deps.UniMaaS]]
 deps = ["Cbc", "CoordinateTransformations", "JuMP", "MathOptInterface", "MeshCat", "MeshCatMechanisms", "Pkg", "Plots", "RigidBodyDynamics"]
-git-tree-sha1 = "239caeea79b1263a34aea23fc551051c508e33ee"
+git-tree-sha1 = "d378401a1f8e3c89495b8bbc408eb7d11a4acd64"
 repo-rev = "main"
 repo-url = "https://github.com/Octochen/UniMaaS"
 uuid = "ef40eabe-a19e-472a-9088-b347bd34dc91"
