@@ -1,6 +1,8 @@
 using Pkg
 Pkg.add(url="https://github.com/Octochen/UniMaaS")
-using UniMaaS, MeshCat, MeshCatMechanisms, RigidBodyDynamics
+using MeshCat, MeshCatMechanisms, RigidBodyDynamics
+
+using UniMaaS
 
 robot = Koch_simulation_model()
 state = MechanismState(robot, zeros(6), zeros(6))
