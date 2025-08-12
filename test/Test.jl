@@ -5,9 +5,10 @@ using MeshCat, MeshCatMechanisms, RigidBodyDynamics
 using UniMaaS
 using UniMaaS.simulation.joint_controller.time_optimal_joint_controller
 
-robot, state, mvis = UniMaaS.simulation.Six_axis_robotic_arm.Koch_simulation_model()
-ball, state_ball, mvis_ball = UniMaaS.simulation.Six_axis_robotic_arm.redball_simulation_model()
-
+vis = Visualizer()
+robot, state, mvis = UniMaaS.simulation.Six_axis_robotic_arm.Koch_simulation_model(vis)
+ball, state_ball, mvis_ball = UniMaaS.simulation.Six_axis_robotic_arm.redball_simulation_model(vis)
+open(vis)
 function one_task_period(
     state::RigidBodyDynamics.MechanismState,
     pf::AbstractVector{<:Real}
@@ -38,5 +39,5 @@ end
 ts, qs = one_task_period(state, [2.0, 0, 0, 0, 0, 0])
 
 # MeshCatMechanisms.animate(mvis, t1, q1; realtimerate = 1.)
-open(mvis_ball)
+
 MeshCatMechanisms.animate(mvis, ts, qs; realtimerate = 2.)
