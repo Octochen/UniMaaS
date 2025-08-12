@@ -7,7 +7,7 @@ function Koch_simulation_model()
     # urdf = joinpath(@__DIR__, "src", "simulation", "urdf", "Koch_v1.1", "Koch_v1.1.urdf")
     robot = RigidBodyDynamics.parse_urdf(Float64, urdf)
     RigidBodyDynamics.remove_fixed_tree_joints!(robot)
-    mvis = MeshCatMechanisms.MechanismVisualizer(robot, URDFVisuals(urdf))
+    mvis = MeshCatMechanisms.MechanismVisualizer(robot, MeshCatMechanisms.URDFVisuals(urdf))
     return robot, mvis
 end
 
