@@ -7,8 +7,7 @@ using UniMaaS.simulation.joint_controller.time_optimal_joint_controller
 
 vis = Visualizer()
 robot, state, mvis = UniMaaS.simulation.Six_axis_robotic_arm.Koch_simulation_model(vis)
-ball, state_ball, mvis_ball = UniMaaS.simulation.Six_axis_robotic_arm.redball_simulation_model(vis)
-open(vis)
+ball, state_ball, mvis_ball = UniMaaS.simulation.Six_axis_robotic_arm.redball_simulation_model(vis, [1.0, 0.0, 0.0, 0.0, -0.1, 0, 0])
 function one_task_period(
     state::RigidBodyDynamics.MechanismState,
     pf::AbstractVector{<:Real}
@@ -41,3 +40,4 @@ ts, qs = one_task_period(state, [2.0, 0, 0, 0, 0, 0])
 # MeshCatMechanisms.animate(mvis, t1, q1; realtimerate = 1.)
 
 MeshCatMechanisms.animate(mvis, ts, qs; realtimerate = 2.)
+MeshCatMechanisms.animate(mvis_ball, ts, qs; realtimerate = 2.)

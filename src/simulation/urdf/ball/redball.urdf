@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <robot name="myfirst">
+  <link name="world"/>
   <link name="base_link">
     <visual>
       <geometry>
@@ -10,4 +11,8 @@
       </material>
     </visual>
   </link>
+  <joint name="floating_joint" type="floating">
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
 </robot>
