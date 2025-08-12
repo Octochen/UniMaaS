@@ -1,3 +1,5 @@
+export problem
+
 module problem
 
 include("deterministic_JSP/deterministic_JSP.jl")
