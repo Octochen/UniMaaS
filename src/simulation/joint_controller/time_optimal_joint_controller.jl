@@ -1,7 +1,6 @@
-export time_optimal_joint_controller
-
 module time_optimal_joint_controller
 import RigidBodyDynamics
+export time_optimal_joint_trajectory
 
 function trapezoidal_speed(
     q0::T, 

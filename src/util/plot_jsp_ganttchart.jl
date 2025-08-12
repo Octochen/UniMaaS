@@ -1,7 +1,6 @@
-export plot_jsp_ganttchart
-
 module plot_jsp_ganttchart
 using Plots
+export jsp_ganttchart
 
 function jsp_ganttchart(jobs, machines, processing_times, machine_assignments, start_times; 
                          title="Job Shop Scheduling Gantt Chart", size=(800, 400))

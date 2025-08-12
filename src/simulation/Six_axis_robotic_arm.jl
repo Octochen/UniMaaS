@@ -1,7 +1,6 @@
-export Six_axis_robotic_arm
-
 module Six_axis_robotic_arm
 import MeshCat, MeshCatMechanisms, RigidBodyDynamics
+export Koch_simulation_model
 
 function Koch_simulation_model()
     urdf = joinpath(@__DIR__, "urdf", "Koch_v1.1", "Koch_v1.1.urdf")
