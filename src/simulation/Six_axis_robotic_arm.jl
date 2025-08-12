@@ -16,7 +16,7 @@ function redball_simulation_model()
     urdf = joinpath(@__DIR__, "urdf", "ball", "redball.urdf")
     # urdf = joinpath(@__DIR__, "src", "simulation", "urdf", "Koch_v1.1", "Koch_v1.1.urdf")
     redball = RigidBodyDynamics.parse_urdf(Float64, urdf)
-    state = RigidBodyDynamics.MechanismState(redball, [1.0], [0.0])
+    state = RigidBodyDynamics.MechanismState(redball)
     mvis = MeshCatMechanisms.MechanismVisualizer(redball, MeshCatMechanisms.URDFVisuals(urdf))
     return redball, state, mvis
 end
