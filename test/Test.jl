@@ -3,7 +3,7 @@ Pkg.add(url="https://github.com/Octochen/UniMaaS")
 using MeshCat, MeshCatMechanisms, RigidBodyDynamics
 
 using UniMaaS
-# using UniMaaS.simulation.joint_controller.time_optimal_joint_controller
+using UniMaaS.simulation.joint_controller.time_optimal_joint_controller
 
 robot, state, mvis = UniMaaS.simulation.Six_axis_robotic_arm.Koch_simulation_model()
 ball, state_ball, mvis_ball = UniMaaS.simulation.Six_axis_robotic_arm.redball_simulation_model()
@@ -38,5 +38,5 @@ end
 ts, qs = one_task_period(state, [2.0, 0, 0, 0, 0, 0])
 
 # MeshCatMechanisms.animate(mvis, t1, q1; realtimerate = 1.)
-mvis_ball
+open(mvis_ball)
 MeshCatMechanisms.animate(mvis, ts, qs; realtimerate = 2.)
