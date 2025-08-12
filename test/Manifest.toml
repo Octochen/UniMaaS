@@ -2,7 +2,7 @@
 
 julia_version = "1.10.8"
 manifest_format = "2.0"
-project_hash = "24b4e8a349ec8b1c0611052ed52acdd6e95e90a4"
+project_hash = "8f2c18b3fc1f62088ac8f6a35b12b670a08d4146"
 
 [[deps.ASL_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1155,7 +1155,7 @@ version = "1.0.2"
 
 [[deps.UniMaaS]]
 deps = ["Cbc", "CoordinateTransformations", "JuMP", "MathOptInterface", "MeshCat", "MeshCatMechanisms", "Pkg", "Plots", "RigidBodyDynamics"]
-git-tree-sha1 = "d378401a1f8e3c89495b8bbc408eb7d11a4acd64"
+git-tree-sha1 = "d09cad7a9e4d10daa5e9d04a43354eadefe82afd"
 repo-rev = "main"
 repo-url = "https://github.com/Octochen/UniMaaS"
 uuid = "ef40eabe-a19e-472a-9088-b347bd34dc91"

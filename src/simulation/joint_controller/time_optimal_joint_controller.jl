@@ -74,6 +74,7 @@ end
 
 function time_optimal_joint_trajectory(
     state0::RigidBodyDynamics.MechanismState, 
+    t_start::Real,
     q_start::AbstractVector{<:Real},
     q_target::AbstractVector{<:Real},
     max_vel::AbstractVector{<:Real},
@@ -89,7 +90,7 @@ function time_optimal_joint_trajectory(
 
     # Take the time of the slowest joint as the total time
     t_final = maximum(t_total)
-    time_points = 0:dt:t_final
+    time_points = t_start:dt:t_start+t_final
 
     joint_trajectory = Vector{Vector{Float64}}(undef, length(time_points))
     for (i, t) in enumerate(time_points)
