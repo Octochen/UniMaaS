@@ -97,13 +97,13 @@ function time_optimal_joint_trajectory(
         singlejoint_trajectory = Vector{Float64}(undef, n_joints)
         for j in 1:n_joints
             singlejoint_trajectory[j] = trapezoidal_speed(
-                q_start[j], q_target[j], max_vel[j], max_acc[j], t
+                q_start[j], q_target[j], max_vel[j], max_acc[j], t-t_start
             )
         end
         joint_trajectory[i] = singlejoint_trajectory
     end
 
-    return collect(time_points), joint_trajectory
+    return time_points, joint_trajectory
 
 end
 
