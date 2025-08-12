@@ -1,6 +1,6 @@
 module Six_axis_robotic_arm
 import MeshCat, MeshCatMechanisms, RigidBodyDynamics
-export Koch_simulation_model
+export Koch_simulation_model, redball_simulation_model
 
 function Koch_simulation_model()
     urdf = joinpath(@__DIR__, "urdf", "Koch_v1.1", "Koch_v1.1.urdf")
@@ -10,6 +10,15 @@ function Koch_simulation_model()
     state = RigidBodyDynamics.MechanismState(robot, zeros(6), zeros(6))
     mvis = MeshCatMechanisms.MechanismVisualizer(robot, MeshCatMechanisms.URDFVisuals(urdf))
     return robot, state, mvis
+end
+
+function redball_simulation_model()
+    urdf = joinpath(@__DIR__, "urdf", "ball", "redball.urdf")
+    # urdf = joinpath(@__DIR__, "src", "simulation", "urdf", "Koch_v1.1", "Koch_v1.1.urdf")
+    redball = RigidBodyDynamics.parse_urdf(Float64, urdf)
+    state = RigidBodyDynamics.MechanismState(redball, zeros(6), zeros(6))
+    mvis = MeshCatMechanisms.MechanismVisualizer(redball, MeshCatMechanisms.URDFVisuals(urdf))
+    return redball, state, mvis
 end
 
 end
