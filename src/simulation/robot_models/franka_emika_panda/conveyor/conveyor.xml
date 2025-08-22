@@ -1,0 +1,173 @@
+<mujoco model="conveyor">
+  <!-- ENGINE SETUP -->
+  <!-- <compiler angle="radian" meshdir="universal_robots_ur5e/assets" autolimits="true" /> -->
+  <option timestep="0.001" integrator="Euler">
+    <flag multiccd="enable" />
+  </option>
+  <statistic center="0.3 0 0.4" extent="3" />
+
+  <!-- Defaults -->
+  <default class="main">
+    <default class="circularItems">
+      <geom type="cylinder" size="0.025 0.015 0" mass="0.1" solref="0.006 1" condim="1" friction="1.5 0.7 0.2"
+        material="tin_material" />
+      <joint type="free" />
+    </default>
+  </default>
+
+  <!-- Actuators -->
+  <actuator>
+    <velocity name="slide_y" joint="slide_y" ctrlrange="0.25 0.50" kv="1000" />
+  </actuator>
+
+  <!-- Sensor -->
+  <!-- <sensor>
+    <framepos name="can1_pos" objtype="body" objname="can1" />
+    <rangefinder name="camera_range" site="range_site" cutoff="2" />
+  </sensor> -->
+  <!-- Lighting -->
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.1 0.1 0.1" specular="0 0 0" />
+    <rgba haze="0.15 0.25 0.35 1" />
+    <global azimuth="120" elevation="-20" offwidth="640" offheight="480" />
+  </visual>
+
+  <!-- Assets -->
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512"
+      height="3072" />
+    <texture type="2d" name="groundplane_1" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4"
+      rgb2="0.1 0.2 0.3"
+      markrgb="0.8 0.8 0.8" width="300" height="300" />
+    <material name="groundplane_1" texture="groundplane" texuniform="true" texrepeat="5 5"
+      reflectance="0.2" />
+
+    <texture type="2d" name="conveyor" builtin="gradient" mark="edge" rgb1="0.5 0.1 0.1"
+      rgb2="0.8 0.1 0.1"
+      markrgb="0.8 0.8 0.8" width="300" height="300" />
+    <material name="conveyor" texture="conveyor" texuniform="true" texrepeat="1 1"
+      reflectance="0.2" />
+    
+    <!-- <texture name="conveyor_stripes" type="2d" builtin="checker" 
+             rgb1="0.25 0.25 0.25" 
+             rgb2="0.35 0.35 0.35"
+             width="300" height="300" 
+             mark="edge" markrgb="0.8 0.8 0.8"/>
+    <material name="conveyor_mat" texture="conveyor_stripes" 
+              texrepeat="3 1"
+              texuniform="true"
+              reflectance="0.1"
+              specular="0.3"
+              rgba="0.9 0.9 0.9 1"/>
+    <material name="rail_mat" rgba="0.15 0.15 0.15 1" specular="0.5"/>  -->
+
+    <texture name="conveyor_simple_texture" type="2d" file="conveyor.png"/>
+    <material name="conveyor_simple_material" texture="conveyor_simple_texture" shininess="0.9"
+              reflectance="0.5" texrepeat="1 10"/>
+
+    <material name="tin_material" rgba="0.75 0.75 0.75 1" reflectance="0.5" texuniform="false"
+      texture="tin_texture"/>
+    <!-- Check the doc for conventions. It is not obvious -->
+    <texture name="tin_texture" type="cube" filefront="tunafront.png" fileback="tunafront.png"
+      filedown="tunadown.png" fileup="tunaup.png" fileleft="tunaleft.png"
+      fileright="tunaright.png" />
+  </asset>
+
+  <!-- MODEL TREE STARTS HERE -->
+  <worldbody>
+    <light pos="0 0 1.5" dir="0.4 0 -1" directional="true" />
+    <geom name="floor_1" size="0 0 0.05" type="plane" material="groundplane" condim="4" />
+
+    <!-- Camera model -->
+    <!-- <body pos="0 0 1.3" euler="0 0 1.5708">
+      <geom size="0.06 0.03 0.01" type="box" />
+      <site name="range_site" size="0.005 0.005 0.005" type="box" euler="3.14159 0 0" />
+      <camera name="rgbcam" mode="fixed" fovy="48.8" />
+    </body> -->
+
+    <!-- Conveyor -->
+    <body pos="0 0 0.5">
+      <!-- Conveyor bottom -->
+      <geom type="box" pos="0 0 -0.3" size="0.25 0.25 0.25" rgba="0.55 0.55 0.55 1" />
+      <geom type="box" pos="0 -7 -0.3" size="0.25 0.25 0.25" rgba="0.55 0.55 0.55 1" />
+      
+      <body>
+        <geom name="conveyor_geom" pos="0 -3.5 -0.01" size="0.25 3.75 0.02" type="box" rgba="0 0 0 0"
+            friction="1.5 0.05 0.001" conaffinity="1" contype="1"/>
+        <joint name="slide_y" type="slide" axis="0 1 0"/>
+      </body>
+
+      <body>
+        <!-- Conveyor top surface -->
+        <geom name="conveyor_visual" pos="0 -3.5 -0.01" size="0.25 4.75 0.02" type="box"
+          material="conveyor_simple_material" contype="0" conaffinity="0"/>
+      </body>
+
+    </body>
+
+    <body pos="0.0 -6.5 0.54" name="can1">
+      <geom type="box" size="0.025 0.015 0.025" rgba="0.95 0.15 0.15 1" 
+            friction="2.0 1.2 0.5" mass="0.025" solref="0.006 1" conaffinity="1" contype="1"/>
+      <joint type="free"/>
+    </body>
+
+    <body pos="0.0 -4.5 0.54" name="can2">
+      <geom type="box" size="0.025 0.015 0.025" rgba="0.95 0.15 0.15 1" 
+            friction="2.0 1.2 0.5" mass="0.025" solref="0.006 1" conaffinity="1" contype="1"/>
+      <joint type="free"/>
+    </body>
+
+    <body pos="0.0 -2.5 0.54" name="can3">
+      <geom type="box" size="0.025 0.015 0.025" rgba="0.95 0.15 0.15 1" 
+            friction="2.0 1.2 0.5" mass="0.025" solref="0.006 1" conaffinity="1" contype="1"/>
+      <joint type="free"/>
+    </body>
+
+    <body pos="-0.5 0.5 0.64" name="can4">
+      <geom type="box" size="0.025 0.015 0.025" rgba="0.95 0.15 0.15 1" 
+            friction="2.0 1.2 0.5" mass="0.025" solref="0.006 1" conaffinity="1" contype="1"/>
+      <joint type="free"/>
+    </body>
+    <!-- <body pos="0.0 -2.5 2.54" name="can4" childclass="circularItems">
+      <geom conaffinity="2" contype="0"/>
+      <joint />
+    </body> -->
+    <!-- <body pos="-0.08 -4.5 0.55" childclass="circularItems">
+      <geom />
+    </body>
+    <body pos="0 -7.5 0.55" childclass="circularItems">
+      <geom />
+    </body>
+    <body pos="0.08 -10.5 0.55" childclass="circularItems">
+      <geom />
+    </body>
+    <body pos="0.16 -13.5 0.55" childclass="circularItems">
+      <geom />
+    </body> -->
+
+  </worldbody>
+
+</mujoco>
+
+      <!-- <body>
+        <!-- Conveyor top surface -->
+        <geom name="conveyor_geom" pos="0 -4.5 -0.01" size="0.25 4.75 0.02" type="box" rgba="0 0 0 0"
+              condim="4" friction="2.5 0.05 0.001" solref="0.006 1"/>
+        <joint name="slide_y" type="slide" axis="0 1 0" />
+      </body> -->
+
+
+<body pos="0.0 -6.5 0.54" name="can1" childclass="circularItems">
+      <geom conaffinity="1" contype="1"/>
+      <joint />
+    </body>
+
+    <body pos="0.0 -4.5 0.54" name="can2" childclass="circularItems">
+      <geom conaffinity="1" contype="1"/>
+      <joint />
+    </body>
+    
+    <body pos="0.0 -2.5 0.54" name="can3" childclass="circularItems">
+      <geom conaffinity="1" contype="1"/>
+      <joint />
+    </body>

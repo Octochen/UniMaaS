@@ -1,10 +1,12 @@
 module simulation
 
 include("Six_axis_robotic_arm.jl")
-include("joint_controller/joint_controller.jl")
+include("trajectory_planning/trajectory_planning.jl")
+include("inverse_kinematics/inverse_kinematics.jl")
 
 using .Six_axis_robotic_arm: *
-using .joint_controller: *
+using .trajectory_planning: *
+using .inverse_kinematics: *
 export *
 
 end

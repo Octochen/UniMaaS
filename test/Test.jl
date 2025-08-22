@@ -8,6 +8,9 @@ using UniMaaS.simulation.joint_controller.time_optimal_joint_controller
 vis = Visualizer()
 open(vis)
 robot, state, mvis = UniMaaS.simulation.Six_axis_robotic_arm.Koch_simulation_model(vis)
+end_effector = findbody(robot, "link_6")
+
+# Applying control strategies to obtain optimal trajectories
 function one_task_period(
     state::RigidBodyDynamics.MechanismState,
     pf::AbstractVector{<:Real}
@@ -25,41 +28,73 @@ function one_task_period(
 
     ts = vcat(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10)
     qs = vcat(q1, q2, q3, q4, q5, q6, q7, q8, q9, q10)
-    return ts, qs
+
+    t_ball = ts
+    q_ball = Vector{Vector{Float64}}()
+    
+    set_configuration!(state, [0.0, 0, 0, -1.6, 0, 0])
+    transform = transform_to_root(state, end_effector)
+    pos = translation(transform)
+    rot = rotation(transform)
+    T_end_to_world_initial = AffineMap(rot, pos)
+    end_effector_center = @SVector [-0.05, 0.006, -0.01]
+    end_effector_center_world_initial = T_end_to_world_initial(end_effector_center)
+    for _ in 1:length(vcat(q1, q2, q3))
+        push!(q_ball, vcat([1.0, 0.0, 0.0, 0.0], end_effector_center_world_initial))
+    end
+
+    for q in vcat(q4, q5, q6, q7)
+        set_configuration!(state, q)
+        transform = transform_to_root(state, end_effector)
+        pos = translation(transform)
+        rot = rotation(transform)
+        T_end_to_world = AffineMap(rot, pos)
+        end_effector_center = @SVector [-0.05, 0.006, -0.01]
+        end_effector_center_world = T_end_to_world(end_effector_center)
+        push!(q_ball, vcat([1.0, 0.0, 0.0, 0.0], end_effector_center_world))
+    end
+
+    for _ in 1:length(vcat(q8, q9, q10))
+        push!(q_ball, vcat([1.0, 0.0, 0.0, 0.0], end_effector_center_world_initial))
+    end
+
+    return ts, qs, t_ball, q_ball
 end
 
-# Applying control strategies to obtain optimal trajectories
-ts, qs = one_task_period(state, [2.0, 0, 0, 0, 0, 0])
+MeshCatMechanisms.animate(mvis, ts, qs; realtimerate = 2.0)
 
-end_effector = findbody(robot, "link_6")
-set_configuration!(state, [0.0, 0, 0, -1.6, 0, 0])
-transform = transform_to_root(state, end_effector)
-pos = translation(transform)
-rot = rotation(transform)
-T_end_to_world = AffineMap(rot, pos)
-end_effector_center = @SVector [-0.05, 0.006, -0.01]
-end_effector_center_world = T_end_to_world(end_effector_center)
 
-ball, state_ball, mvis_ball = UniMaaS.simulation.Six_axis_robotic_arm.redball_simulation_model(vis, vcat([1.0, 0.0, 0.0, 0.0], end_effector_center_world))
-ball_base = findbody(ball, "base_link")
+
+# ts, qs, t_ball, q_ball = one_task_period(state, [2.0, 0, 0, 0, 0, 0])
+
+# set_configuration!(state, [0.0, 0, 0, -1.6, 0, 0])
+# transform = transform_to_root(state, end_effector)
+# pos = translation(transform)
+# rot = rotation(transform)
+# T_end_to_world_initial = AffineMap(rot, pos)
+# end_effector_center = @SVector [-0.05, 0.006, -0.01]
+# end_effector_center_world_initial = T_end_to_world_initial(end_effector_center)
+# ball, state_ball, mvis_ball = UniMaaS.simulation.Six_axis_robotic_arm.redball_simulation_model(vis, vcat([1.0, 0.0, 0.0, 0.0], end_effector_center_world_initial))
 
 # animation = Animation(vis["/ball"])
 # function update_frame(vis::Visualizer, pos::SVector{3,Float64}, rot::RotMatrix{3,Float64})
 #     tf = AffineMap(rot, pos)
 #     settransform!(vis, tf)
 # end
-# for (i, q) in zip(ts, qs)
+
+# for (i, q) in enumerate(qs[ball_s: ball_f])
 #     atframe(animation, i) do
-#         set_configuration!(state_ball, q)
-        
-#         transform = transform_to_root(state_ball, end_effector)
+#         set_configuration!(state, q)
+#         transform = transform_to_root(state, end_effector)
 #         pos = translation(transform)
 #         rot = rotation(transform)
-        
-#         update_frame(mvis_ball[:ball], pos, rot)
+#         update_frame(vis["/ball"], pos, rot)
 #     end
 # end
 
+
 # setanimation!(vis["/ball"], animation)
 
-MeshCatMechanisms.animate(mvis, ts, qs; realtimerate = 1.0)
+
+
+# MeshCatMechanisms.animate(mvis_ball, ts, q_ball; realtimerate = 2.0)
